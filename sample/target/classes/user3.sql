@@ -1,0 +1,6 @@
+--liquibase formatted sql
+--changeset user3:release_2.alter_pk.sql
+
+ALTER TABLE COMMUNITY_USER ADD PRIMARY KEY (GATEWAY_ID, COMMUNITY_USER_NAME, TOKEN_ID);
+
+--rollback ALTER TABLE COMMUNITY_USER DROP PRIMARY KEY;

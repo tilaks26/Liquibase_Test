@@ -1,0 +1,16 @@
+--liquibase formatted sql
+--changeset user2:release_1.insert_rows.sql
+
+INSERT INTO CONFIGURATION (CONFIG_KEY, CONFIG_VAL) VALUES ('credential_store_version', '0.16');
+
+--rollback DELETE FROM CONFIGURATION WHERE CONFIG_KEY='credential_store_version' AND CONFIG_VAL='0.16';
+
+--changeset user2:release_1.alter_tables.sql
+
+ALTER TABLE CONFIGURATION DROP PRIMARY KEY;
+
+--rollback ALTER TABLE CONFIGURATION ADD PRIMARY KEY CONFIG_VAL;
+
+ALTER TABLE CONFIGURATION DROP COLUMN CONFIG_VAL;
+
+--rollback ALTER TABLE CONFIGURATION ADD COLUMN CONFIG_VAL;
